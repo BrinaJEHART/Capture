@@ -4,9 +4,15 @@ body{
     margin: 0;
 }
 
-/* </Navigation Bar/> */
+/* </ Navigation Bar/> */
 
-.navbar{
+    /* </ Bootstrap navbar/> */
+
+    .ddm *{
+        color: black !important;
+    }
+
+/* .navbar{
     background-color: #292929;
     padding: 0;
     margin: 0;
@@ -24,6 +30,6 @@ body{
 .navbar a:hover{
     color: gray;
     text-decoration:underline red;
-}
+} */
 
 /* </Navigation Bar/> */
