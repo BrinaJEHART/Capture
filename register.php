@@ -40,7 +40,7 @@
                 $errors[] = "Account already exists!";
             }
             else{
-                $sql = "INSERT INTO users (username, password, email, time_created)". "VALUES ('$username', '$password', '$email', NOW())";
+                $sql = "INSERT INTO users (username, password, email, time_created)". " VALUES ('$username', '$password', '$email', NOW())";
                 if($mysqli->query($sql)){
                     $successmsg = "Account created!";
                     header("location: login.php");
@@ -97,7 +97,7 @@
             <?php
                     if(!empty($errors)){
                         foreach($errors as $error){
-                            echo "<p class='error' style='color: white;'>" . $error . "</p>";
+                            echo "<p class='error' style='color: red;'>" . $error . "</p>";
 
                         }
                    }
