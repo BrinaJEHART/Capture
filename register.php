@@ -43,7 +43,7 @@
                 $sql = "INSERT INTO users (username, password, email, time_created)". " VALUES ('$username', '$password', '$email', NOW())";
                 if($mysqli->query($sql)){
                     $successmsg = "Account created!";
-                    header("location: login.php");
+                    header("Location: login.php");
                 }
                 else{
                     $errors[] = "Account creation failed!";
