@@ -5,7 +5,7 @@
     session_start();
 
     if(isset($_SESSION['logged_in']) && $_SESSION['logged_in'] == true){
-        header("location: index.php");
+        header("location: homepage.php");
     }
 
     if(isset($_POST['username']) && isset($_POST['password'])){
@@ -38,7 +38,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <link rel="stylesheet" type="text/css" href="login_register.css">
+  <link rel="stylesheet" type="text/css" href="css/login_register.css">
   <script src="loginjava.js"></script>
   <title>Login</title>
 </head>
