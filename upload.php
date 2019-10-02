@@ -38,6 +38,7 @@
 
         else{
             $didUpload = move_uploaded_file($fileTempName, $uploadPath);
+            
             if ($didUpload){
                 rename('images/' . basename($fileName), 'images/' . $potHash . "." . $fileExtension);
                 $potDoSlike = $potHash . "." . $fileExtension;

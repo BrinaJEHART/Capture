@@ -9,7 +9,7 @@
   }
 
   if(isset($_POST['btnn'])){
-    header ("Location: register.php");
+    header ("Location: login.php");
   }
 
 
