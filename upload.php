@@ -14,7 +14,7 @@
         $desc = $mysqli->escape_string(trim($_POST['desc']));
 
         $currentDir = getcwd();
-        $uploadDirectory = "/images/";
+        $uploadDirectory = "public_html/Images/";
         $errors = [];
         $fileExtensions = ['jpeg','jpg','png'];
 
