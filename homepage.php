@@ -38,7 +38,8 @@
 
     <?php require 'navbar.php' ?>
 
-    <div class="kekec">
+</div class="content">
+    <div class="people">
     <?php
 
     while($row=mysqli_fetch_assoc($result)){
@@ -99,7 +100,7 @@
     }
     ?>
     </div>
-
+</div>
 </body>
 
 </html>

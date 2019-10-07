@@ -68,6 +68,7 @@
     <style>
     .settings{
         width: 80%;
+        padding: 20px;
         margin: auto;
     }
 
@@ -88,15 +89,67 @@
     <div class="settings">
 
         <div>
-            <p>Change your username</p>
-        </div>
-        <div>
-            <p>Change your email</p>
-        </div>
-        <div>
-            <p>Change your password</p>
-        </div>
+            <h3>Change your email:</h3>
 
+            <form action="reset_email.php" method="POST">
+            <div>
+            <p>New email:</p>
+            <input class="inpt" type="email" name="new_email">
+            </div>
+            <input class="button" type="submit" name="submit" value="Change email">
+        </form>
+        <div>
+            <?php
+
+                if(isset($_GET['success'])){
+
+                    if($_GET['success'] == 1){
+                        echo "<p>You have successfully changed your email!</p>";
+                    }
+    
+                    else if($_GET['success'] == 0){
+                        echo "<p>Oops! Something went wrong!</p>";
+                    }
+                }
+        
+            ?>
+        </div>
+        <hr>
+
+        </div>
+        <div>
+            <h3>Change your password:</h3>
+            
+            <form action="reset_password.php" method="POST">
+                <div>
+                    <p>Previous password:</p>
+                    <input class="inpt" type="password" name="old_password">
+                </div>
+                <div>
+                    <p>New password:</p>
+                    <input class="inpt" type="password" name="new_password">
+                </div>
+                    <input class="button" type="submit" name="submit" value="Change password">
+            </form>
+        <div>
+        <hr>
+    <?php
+        if(isset($_GET['success'])){
+
+            if($_GET['success2'] == 1){
+                echo "<p>You have successfully changed your password!</p>";
+            }
+
+            else if($_GET['success2'] == 0){
+                echo "<p>Oops! Something went wrong!</p>";
+            }
+        }
+    ?>
+
+
+
+        </div>
+            <h3>Change your profile picture:</h3>
 
             <?php if(!empty($errors))
                 {
@@ -106,7 +159,7 @@
                 }
             ?>
             <div class="profile-pic">
-                <p>Change your profile pic</p><br>
+
                 <img src="Images/<?php echo $user['potka'] ?>" alt="profile_picture" width="150px" height="150px">
                 <form method="POST" enctype="multipart/form-data">
                     <input type="file" name="profile_pic_file">
