@@ -1,8 +1,8 @@
 <?php
 
-    require 'db.php';
-
     session_start();
+
+    require 'db.php';
 
     if(!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] == false){
         header ("location: login.php");
@@ -11,10 +11,10 @@
     if(isset($_POST['submit'])){
 
         $title = $mysqli->escape_string(trim($_POST['title']));
-        $desc = $mysqli->escape_string(trim($_POST['desc']));
+        $dsc = $mysqli->escape_string(trim($_POST['dsc']));
 
         $currentDir = getcwd();
-        $uploadDirectory = "public_html/Images/";
+        $uploadDirectory = "/Images/";
         $errors = [];
         $fileExtensions = ['jpeg','jpg','png'];
 
@@ -38,13 +38,12 @@
 
         else{
             $didUpload = move_uploaded_file($fileTempName, $uploadPath);
-            
             if ($didUpload){
-                rename('images/' . basename($fileName), 'images/' . $potHash . "." . $fileExtension);
+                rename('Images/' . basename($fileName), 'Images/' . $potHash . "." . $fileExtension);
                 $potDoSlike = $potHash . "." . $fileExtension;
-                $sql = "INSERT INTO images (user_id, name, path)". "VALUES('{$_SESSION['user_id']}'), '$title', '$potDoSlike'";
+                $sql = "INSERT INTO images (user_id, title, dsc, pathh, date_uploaded )". "VALUES('{$_SESSION['user_id']}', '$title' , '$dsc', '$potDoSlike', NOW())";
                 if($mysqli->query($sql)){
-                    header("location: insert.php?success=1");
+                    header("location: upload.php?success=1");
                 }
                 else{
                     $errors[] = "Couldn't execute the query.";
@@ -79,24 +78,6 @@
 
     <h1>Share your moment</h1>
 
-    <!-- <form method="POST" action="upload.html">
-
-        <input type="text" name="title" placeholder="title">
-
-
-        <div class="input-group">
-            <div class="input-group-prepend">
-              <span class="input-group-text" id="inputGroupFileAddon01">Upload</span>
-            </div>
-            <div class="custom-file">
-              <input type="file" class="custom-file-input" id="inputGroupFile01"
-                aria-describedby="inputGroupFileAddon01">
-              <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
-            </div>
-          </div>
-
-    </form> -->
-
     <form action="upload.php" method="POST" enctype="multipart/form-data">
         <div>
         <p class="contentp">Title:</p>
@@ -104,7 +85,7 @@
         </div>
         <div>
             <p class="contentp">Description:</p>
-            <textarea class='txtarea' name="desc" placeholder="e.g. Sunset on hawaii beach" ></textarea><br>
+            <textarea class='txtarea' name="dsc" placeholder="e.g. Sunset on hawaii beach" ></textarea><br>
         </div>
         <div>
             <input type="file" class="stranpejt" name="picfile" id="picfile" accept=".jpeg, .jpg, .png" required><br>
@@ -126,7 +107,7 @@
                    if(isset($_GET['success'])){
 
                     if($_GET['success'] == 1){
-                        echo "<p>You have successfully uploaded your receipt!</p>";
+                        echo "<p>You have successfully uploaded your picture!</p>";
                     }
     
                     else if($_GET['success'] == 0){
