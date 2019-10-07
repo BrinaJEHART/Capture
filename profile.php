@@ -29,12 +29,14 @@
         {
             $query = "INSERT INTO followers (following_id, user_id) VALUES ((SELECT id FROM users WHERE username='".$_GET['username']."'), ".$_SESSION['user_id'].")";
             $mysqli->query($query);
+            header("location: profile.php?username=". $username);
         }
         //Če kliknemo follow ne sledimo več profilu na katerem smo
         if(isset($_POST['unfollow']))
         {
             $query = "DELETE FROM followers WHERE following_id = (SELECT id FROM users WHERE username='".$_GET['username']."') AND  user_id = ".$_SESSION['user_id'];
             $mysqli->query($query);
+            header("location: profile.php?username=". $username);
         }   
 
 
@@ -71,8 +73,8 @@
                 </div>
                 <div>
                 <?php
-                if(!$me && $follow == false) echo '<form method="POST"><input name="follow" type="submit" value="Follow"></form>';
-                else if(!$me && $follow == true) echo '<form method="POST"><input name="unfollow" type="submit" value="Unfollow"></form>';
+                if(!$me && $follow == false) echo "<form method='POST'><input name='follow' type='submit' value='Follow'></form>";
+                else if(!$me && $follow == true) echo "<form method='POST'><input name='unfollow' type='submit' value='Unfollow'></form>";
                 ?>
                 </div>
         </div>

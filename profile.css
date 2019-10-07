@@ -1,0 +1,22 @@
+body{
+    background-color: gray;
+}
+
+.box{
+    margin: 0 auto;
+    width: 150px;
+    height: 150px;
+}
+
+.picture{
+    border-radius: 100%;
+    overflow: hidden;
+}
+
+.data{
+    border: 1px red !important;
+}
+
+p{
+    color: white;
+}

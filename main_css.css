@@ -1,0 +1,35 @@
+body{
+    font-family: 'Source Sans Pro', sans-serif;
+    padding: 0;
+    margin: 0;
+}
+
+/* </ Navigation Bar/> */
+
+    /* </ Bootstrap navbar/> */
+
+    .ddm *{
+        color: black !important;
+    }
+
+/* .navbar{
+    background-color: #292929;
+    padding: 0;
+    margin: 0;
+    height: 50px;
+}
+
+.navbar a{
+    display: inline-block;
+    padding: 10px;
+    font-size: 1.2em;
+    color: white;
+    text-decoration: none;
+}
+
+.navbar a:hover{
+    color: gray;
+    text-decoration:underline red;
+} */
+
+/* </Navigation Bar/> */
