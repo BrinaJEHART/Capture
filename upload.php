@@ -76,7 +76,12 @@
 
 <body>
 
-    <h1>Share your moment</h1>
+    <?php require 'navbar.php'; ?>
+
+    <h1 class="naslov">Share your moment</h1>
+
+    <div class="vsebina">
+
 
     <form action="upload.php" method="POST" enctype="multipart/form-data">
         <div>
@@ -117,7 +122,7 @@
             ?>   
         </div>
     </form>
-
+    </div>
 </body>
 
 </html>

@@ -46,7 +46,7 @@
           <a class="dropdown-item" href="homepage.php">Newsfeed</a>
           <a class="dropdown-item" href="#">Albums</a>
           <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="#">People</a>
+          <a class="dropdown-item" href="people.php">People</a>
         </div>
       </li>
       <li class="nav-item">

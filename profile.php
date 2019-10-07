@@ -61,7 +61,7 @@
         <?php require 'navbar.php' ?>
         <div class="cover">
                 <div class="box picture">
-                    <img src="Images/2.jpg" alt="profile picture" width="250px">
+                    <img src="Images/<?php echo $profile['potka'] ?>" alt="profile picture" width="150px" height="150px;">
                     <p>Edit</p>
                 </div>
                 <div class="data">
