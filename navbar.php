@@ -32,7 +32,7 @@
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
           <a class="dropdown-item" href="<?php echo 'profile.php?username=' . $_SESSION['username'] ?>">Profile</a>
-          <a class="dropdown-item" href="#">Your pictures</a>
+          <a class="dropdown-item" href="<?php echo 'profile.php?username=' . $_SESSION['username'] ?>">Your pictures</a>
           <div class="dropdown-divider"></div>
           <a class="dropdown-item" href="settings.php">Settings</a>
           <a class="dropdown-item" href="logout.php">Logout</a>

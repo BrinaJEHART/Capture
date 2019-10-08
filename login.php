@@ -40,6 +40,8 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <link rel="stylesheet" type="text/css" href="css/login_register.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://apis.google.com/js/platform.js" async defer></script>
+  <meta name="google-signin-client_id" content="904097946288-8gmthbicfnsm6q1p7384pgvflr75gabd.apps.googleusercontent.com">
   <script src="loginjava.js"></script>
   <title>Login</title>
 </head>
@@ -60,6 +62,7 @@
     <button type="submit" class="button buttonBlue">Log in
       <div class="ripples buttonRipples"><span class="ripplesCircle"></span></div>
     </button>
+    <div class="g-signin2" data-onsuccess="onSignIn"></div>
     <div>
       <a href="register.php" class="button buttonBlue">Register</a>
     </div>
@@ -81,6 +84,12 @@
             ?>
             </div>
   </form>
+  <script>
+    function onSignIn(googleUser) {
+      var profile = googleUser.getBasicProfile();
+      console.log(profile);
+    }
+</script>
   <footer>
     <img src="Images/logo2.png"></a>
     <p>©2019 Capture by JEHART</p>

@@ -38,18 +38,19 @@
             header("location: profile.php?username=". $username);
         }   
 
-        $content = ($mysqli->query("SELECT * FROM users u INNER JOIN images i ON i.user_id=u.id WHERE u.username ='$username'"));
+        $content = ($mysqli->query("SELECT u.username, i.title, i.dsc, i.pathh, i.id AS imgId FROM users u INNER JOIN images i ON i.user_id=u.id WHERE u.username ='$username'"));
 
         $postsData = $mysqli->query("SELECT u.username, i.title, i.dsc, i.pathh, i.id AS imgId FROM followers f INNER JOIN users u ON f.following_id = u.id INNER JOIN images i ON i.user_id = u.id WHERE f.user_id = '{$_SESSION['user_id']}'");
 
         if(isset($_POST['submit'])){
             $komentar = $_POST['comment'];
             $comment = $mysqli->query("INSERT INTO comments (content, date, user_id, image_id) VALUES('$komentar', NOW(), '{$_SESSION['user_id']}', '{$_POST['imgId']}')");
-            header("location: homepage.php");
+            header("location: profile.php?username=". $username);
         }
 
         $userFollows = ($mysqli->query("SELECT COUNT(*) as num FROM followers WHERE following_id = {$profile['id']}"))->fetch_assoc(); 
         $userFollowing = ($mysqli->query("SELECT COUNT(*) as num FROM followers WHERE user_id = {$profile['id']}"))->fetch_assoc(); 
+
         } else {
             header ("location: 404.html");
         }
@@ -64,12 +65,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" type="text/css" href="css/profile.css">
+    <link rel="stylesheet" type="text/css" href="css/posts.css">
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600&display=swap" rel="stylesheet">
     <title><?php echo $profile["username"] ?></title>
 </head>
 <body>
-    <div class="content">
-        <?php require 'navbar.php' ?>
+<?php require 'navbar.php' ?>
+    <div class="stuff">
+        
         <div class="cover">
                 <div class="box picture">
                     <img src="Images/<?php echo $profile['potka'] ?>" alt="profile picture" width="150px" height="150px;">
@@ -78,8 +81,8 @@
                 <div class="data">
                     <?php
                         echo "<p class='pdata'>" . $profile['username'] . "</p>";
-                        echo "<p class='pdata'>Followers: " . $userFollows['num'] . "</p>";
-                        echo "<p class='pdata'>Following: " . $userFollowing['num'] . "</p>";
+                        echo "<a href='ppl.php?username=" .$profile['username'] ."&followers=1' class='pdata'>Followers: " . $userFollows['num'] . "</p>";
+                        echo "<a href='ppl.php?username=".$profile['username']."&followers=0' class='pdata'>Following: " . $userFollowing['num'] . "</p>";
                     ?>
                 </div>
                 <div>
@@ -92,6 +95,8 @@
         <?php require 'profbar.php'?>
 
         <div>
+    
+    <div clas="content"> 
 
         <div class="posts">
     <?php
@@ -103,16 +108,16 @@
         </div>
         <div class='card--primary'>
             <h2> " . $row['title'] . "</h2>
-            <a href='profile.php?username=" . $row['username'] ."'>". $row['username'] ."</a>
+            <a class='usrname' href='profile.php?username=" . $row['username'] ."'>". $row['username'] ."</a>
         </div>
         <div class='card--supporting'>
-            <p>". $row['dsc'] ."</p>
+            <p class='description'>". $row['dsc'] ."</p>
         </div>
         <div>
 
-        <form action='homepage.php' method='POST' enctype='multipart/form-data'>
+        <form action='profile.php?username=" . $row['username'] ."' method='POST' enctype='multipart/form-data'>
             <div>
-                <textarea class='txtarea' name='comment' placeholder='e.g. Mijav' required></textarea>
+                <textarea class='txtarea' name='comment' placeholder='e.g. Beautiful picture!' required></textarea>
                 <input type='hidden' name='imgId' value='" .$row['imgId'] . "'>
             </div>
             <div>
@@ -123,13 +128,13 @@
                 $displayComm = $mysqli->query("SELECT c.id as cid, c.content, c.date, c.user_id as cuid, u.username FROM comments c INNER JOIN users u ON u.id=c.user_id INNER JOIN images i ON i.id=c.image_id WHERE i.id='{$row['imgId']}' ORDER BY c.date DESC");
                     while($row = $displayComm->fetch_assoc()){
                         echo "<div class='comments'>";
-                        echo "<p> <span style='color:orange;font-size:1.1em'><b>" . $row['username'] . "</b></span>" . "&nbsp" . "<span style='color:black;font-size:0.8em;'>" . $row['date_time'] ."</span></p>";
+                        echo "<p> <span style='font-size:1.1em'><b>" . $row['username'] . "</b></span>" . "&nbsp" . "<span style='color:black;font-size:0.8em;'>" . $row['date'] ."</span></p>";
                         echo $row['content'];
                         echo "<br><br>";
                         
                         echo "<div>";
                             if(isset($_SESSION['user_id']) && $row['cuid'] == $_SESSION['user_id']){
-                            echo "<a class='izbrkom' href='delete.php?id=" . $row['cid'] . "'>Izbriši komentar</a>";
+                            echo "<a class='izbrkom' href='delete.php?id=" . $row['cid'] . "'>Delete Comment</a>";
                             }
                         echo "</div>
                     </div>";
@@ -144,6 +149,7 @@
     }
     ?>
     </div>
+</div>
 
     </div>
 </body>

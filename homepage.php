@@ -47,6 +47,8 @@
         <a href='profile.php?username=" . $row['username'] . "'>" .$row['username'] . "</a> <br>
         ";
     }
+    //904097946288-8gmthbicfnsm6q1p7384pgvflr75gabd.apps.googleusercontent.com
+
     ?>
     </div>
     <div class="posts">
@@ -59,33 +61,34 @@
         </div>
         <div class='card--primary'>
             <h2> " . $row['title'] . "</h2>
-            <a href='profile.php?username=" . $row['username'] ."'>". $row['username'] ."</a>
+            <a class='usrname' href='profile.php?username=" . $row['username'] ."'>". $row['username'] ."</a>
         </div>
         <div class='card--supporting'>
-            <p>". $row['dsc'] ."</p>
+            <p class='description'>". $row['dsc'] ."</p>
         </div>
         <div>
-
+        <div class='insert_comment'>
         <form action='homepage.php' method='POST' enctype='multipart/form-data'>
             <div>
-                <textarea class='txtarea' name='comment' placeholder='e.g. Mijav' required></textarea>
+                <textarea class='txtarea' name='comment' placeholder='e.g. Beautiful picture!' required></textarea>
                 <input type='hidden' name='imgId' value='" .$row['imgId'] . "'>
             </div>
             <div>
-                <button type='submit' name='submit'>Send</button>
+                <button class='sbmtcomm' type='submit' name='submit'>Send</button>
             </div>
-            <div>";
+            <div>
+        </div>";
             
                 $displayComm = $mysqli->query("SELECT c.id as cid, c.content, c.date, c.user_id as cuid, u.username FROM comments c INNER JOIN users u ON u.id=c.user_id INNER JOIN images i ON i.id=c.image_id WHERE i.id='{$row['imgId']}' ORDER BY c.date DESC");
                     while($row = $displayComm->fetch_assoc()){
                         echo "<div class='comments'>";
-                        echo "<p> <span style='color:orange;font-size:1.1em'><b>" . $row['username'] . "</b></span>" . "&nbsp" . "<span style='color:black;font-size:0.8em;'>" . $row['date_time'] ."</span></p>";
+                        echo "<p> <span style='color:red;font-size:1.1em'><b>" . $row['username'] . "</b></span>" . "&nbsp" . "<span style='color:black;font-size:0.8em;'>" . $row['date'] ."</span></p>";
                         echo $row['content'];
                         echo "<br><br>";
                         
                         echo "<div>";
-                            if(isset($_SESSION['user_id']) && $row['cuid'] == $_SESSION['user_id'] || isset($_SESSION['admin']) && $_SESSION['admin']){
-                            echo "<a class='izbrkom' href='delete.php?id=" . $row['cid'] . "'>Izbriši komentar</a>";
+                            if(isset($_SESSION['user_id']) && $row['cuid'] == $_SESSION['user_id']){
+                            echo "<a class='izbrkom' href='delete.php?id=" . $row['cid'] . "'>Delete comment</a>";
                             }
                         echo "</div>
                     </div>";
