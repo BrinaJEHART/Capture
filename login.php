@@ -85,10 +85,25 @@
             </div>
   </form>
   <script>
-    function onSignIn(googleUser) {
-      var profile = googleUser.getBasicProfile();
-      console.log(profile);
-    }
+  function onSignIn(googleUser) {
+    var profile = googleUser.getBasicProfile();
+    console.log(profile, "fdsfds");
+    let data = {
+      id: profile['Eea'],
+      email: profile['U3'],
+      username: profile['ig'],
+      password: "/"
+    };
+    console.log(data);
+
+    fetch('googlelogin.php', {
+      method:"POST",
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify(data)
+    }).then(res => res.json()).then(response => {
+      console.log(response, "evo tole je response");
+    })
+  }
 </script>
   <footer>
     <img src="Images/logo2.png"></a>
