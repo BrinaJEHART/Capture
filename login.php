@@ -62,10 +62,10 @@
     <button type="submit" class="button buttonBlue">Log in
       <div class="ripples buttonRipples"><span class="ripplesCircle"></span></div>
     </button>
-    <div class="g-signin2" data-onsuccess="onSignIn"></div>
     <div>
       <a href="register.php" class="button buttonBlue">Register</a>
     </div>
+    <div class="g-signin2" data-onsuccess="onSignIn"></div>
     <div class="errormsg">
             <!-- Errors -->
             <?php if(!empty($usererror)){
