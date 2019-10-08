@@ -28,8 +28,7 @@
                 $passerror = "Incorrect password!";
             }
         }
-
-    }
+    } 
 
 ?>
 <!DOCTYPE html>
@@ -41,6 +40,7 @@
   <link rel="stylesheet" type="text/css" href="css/login_register.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
   <script src="https://apis.google.com/js/platform.js" async defer></script>
+  <meta name="google-signin-scope" content="profile email">
   <meta name="google-signin-client_id" content="904097946288-8gmthbicfnsm6q1p7384pgvflr75gabd.apps.googleusercontent.com">
   <script src="loginjava.js"></script>
   <title>Login</title>
@@ -86,8 +86,19 @@
   </form>
   <script>
     function onSignIn(googleUser) {
-      var profile = googleUser.getBasicProfile();
-      console.log(profile);
+        var profile = googleUser.getBasicProfile();
+        console.log(profile, "fdsfds");
+        let data = {
+            "id": profile['Eea'],
+            "email": profile['U3'],
+            "username": profile['ig'],
+            "password": '/'
+        };
+        console.log(data);
+        fetch(`googlelogin.php?id=${data.id}&email=${data.email}&username=${data.username}&password=${data.password}`)
+        .then(res => res.json()).then(response => {
+            window.location.href = `googleauth.php?username=${data.username}&google=${1}`;
+        })
     }
 </script>
   <footer>
