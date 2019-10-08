@@ -1,4 +1,5 @@
 $(window, document, undefined).ready(function() {
+
   $('input').blur(function() {
     var $this = $(this);
     if ($this.val())

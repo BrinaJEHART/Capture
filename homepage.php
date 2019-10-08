@@ -9,7 +9,7 @@
 
     $result = $mysqli->query("SELECT * FROM users WHERE NOT id='{$_SESSION['user_id']}' ORDER BY RAND() LIMIT 5 ");
     //$postsData = $mysqli->query("SELECT * FROM followers f INNER JOIN users u ON f.following_id = u.id INNER JOIN images i ON i.user_id = u.id WHERE f.user_id = '{$_SESSION['user_id']}'");
-    $postsData = $mysqli->query("SELECT u.username, i.title, i.dsc, i.pathh, i.id AS imgId FROM followers f INNER JOIN users u ON f.following_id = u.id INNER JOIN images i ON i.user_id = u.id WHERE f.user_id = '{$_SESSION['user_id']}'");
+    $postsData = $mysqli->query("SELECT u.username, i.title, i.dsc, i.pathh, i.date_uploaded, i.id AS imgId FROM followers f INNER JOIN users u ON f.following_id = u.id INNER JOIN images i ON i.user_id = u.id WHERE f.user_id = '{$_SESSION['user_id']}'ORDER BY i.date_uploaded DESC ");
 
     if(isset($_POST['submit'])){
         $komentar = $_POST['comment'];
@@ -66,9 +66,11 @@
         <div class='card--supporting'>
             <p class='description'>". $row['dsc'] ."</p>
         </div>
+        <hr>
         <div>
         <div class='insert_comment'>
         <form action='homepage.php' method='POST' enctype='multipart/form-data'>
+            <label class='comlabel'>Comment:</label>
             <div>
                 <textarea class='txtarea' name='comment' placeholder='e.g. Beautiful picture!' required></textarea>
                 <input type='hidden' name='imgId' value='" .$row['imgId'] . "'>
@@ -76,6 +78,7 @@
             <div>
                 <button class='sbmtcomm' type='submit' name='submit'>Send</button>
             </div>
+            <hr>
             <div>
         </div>";
             
@@ -83,7 +86,7 @@
                     while($row = $displayComm->fetch_assoc()){
                         echo "<div class='comments'>";
                         echo "<p> <span style='color:red;font-size:1.1em'><b>" . $row['username'] . "</b></span>" . "&nbsp" . "<span style='color:black;font-size:0.8em;'>" . $row['date'] ."</span></p>";
-                        echo $row['content'];
+                        echo "<p>" .$row['content']. "</p>";
                         echo "<br><br>";
                         
                         echo "<div>";

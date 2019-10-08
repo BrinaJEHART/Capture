@@ -2,34 +2,17 @@ body{
     font-family: 'Source Sans Pro', sans-serif;
     padding: 0;
     margin: 0;
+    font-size: 1.1em !important;
+    background-color: #ececec !important;
 }
 
-/* </ Navigation Bar/> */
-
-    /* </ Bootstrap navbar/> */
-
-    /* .ddm *{
-        color: black !important;
-    } */
-
-/* .navbar{
-    background-color: #292929;
-    padding: 0;
-    margin: 0;
-    height: 50px;
-}
-
-.navbar a{
-    display: inline-block;
-    padding: 10px;
-    font-size: 1.2em;
-    color: white;
+.people a{
     text-decoration: none;
+    color: black;
+    font-size: 1.2em;
 }
 
-.navbar a:hover{
-    color: gray;
-    text-decoration:underline red;
-} */
+.people a:hover{
+    text-decoration: none;
 
-/* </Navigation Bar/> */
+}

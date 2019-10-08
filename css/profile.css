@@ -28,7 +28,18 @@ p{
 }
 .pdata{
     color: white;
-    size: 1.2em;
+    font-size: 1.2em !important;
+    text-decoration: none;
+}
+
+.links{
+    text-decoration: none;
+    color: white;
+}
+
+.links:hover{
+    text-decoration: none;
+    color: gray;
 }
 
 
@@ -41,3 +52,4 @@ p{
     margin: 0;
     padding: 25px;
 }
+

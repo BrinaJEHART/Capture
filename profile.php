@@ -81,8 +81,8 @@
                 <div class="data">
                     <?php
                         echo "<p class='pdata'>" . $profile['username'] . "</p>";
-                        echo "<a href='ppl.php?username=" .$profile['username'] ."&followers=1' class='pdata'>Followers: " . $userFollows['num'] . "</p>";
-                        echo "<a href='ppl.php?username=".$profile['username']."&followers=0' class='pdata'>Following: " . $userFollowing['num'] . "</p>";
+                        echo "<a class='pdata links' href='follow_check.php?username=" .$profile['username'] ."&followers=1'>Followers: " . $userFollows['num'] . "</a><br>";
+                        echo "<a class='pdata links' href='follow_check.php?username=".$profile['username']."&followers=0'>Following: " . $userFollowing['num'] . "</a>";
                     ?>
                 </div>
                 <div>

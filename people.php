@@ -8,7 +8,7 @@ if(isset($_SESSION['logged_in']) && $_SESSION['logged_in'] == false){
     header ("location: login.php");
 }
 
-$result = $mysqli->query("SELECT * FROM users WHERE NOT id='{$_SESSION['user_id']}' ORDER BY RAND()");
+$result = $mysqli->query("SELECT * FROM users WHERE NOT id='{$_SESSION['user_id']}'");
 
 ?>
 
@@ -25,13 +25,16 @@ $result = $mysqli->query("SELECT * FROM users WHERE NOT id='{$_SESSION['user_id'
     
     <?php require 'navbar.php' ?>
 
-    <div class="people">
+    <div class="peoplee">
     <?php
 
     while($row=mysqli_fetch_assoc($result)){
         echo"
-        <a href='profile.php?username=" . $row['username'] . "'>" .$row['username'] . "</a> <br>
-        ";
+        <div class='stuff'>
+        <img src='Images/". $row['potka'] ."' alt='profile_pic' width='250px' height='250px'>
+        <a href='profile.php?username=" . $row['username'] . "'> " .$row['username'] . "</a> <br>
+        </div>";
+        
     }
     ?>
     </div>
