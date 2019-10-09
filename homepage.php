@@ -8,8 +8,18 @@
     }
 
     $result = $mysqli->query("SELECT * FROM users WHERE NOT id='{$_SESSION['user_id']}' ORDER BY RAND() LIMIT 5 ");
-    //$postsData = $mysqli->query("SELECT * FROM followers f INNER JOIN users u ON f.following_id = u.id INNER JOIN images i ON i.user_id = u.id WHERE f.user_id = '{$_SESSION['user_id']}'");
-    $postsData = $mysqli->query("SELECT u.username, i.title, i.dsc, i.pathh, i.date_uploaded, i.id AS imgId FROM followers f INNER JOIN users u ON f.following_id = u.id INNER JOIN images i ON i.user_id = u.id WHERE f.user_id = '{$_SESSION['user_id']}'ORDER BY i.date_uploaded DESC ");
+
+    $imgSearch = "SELECT u.username, i.title, i.dsc, i.pathh, i.date_uploaded, i.id AS imgId FROM followers f INNER JOIN users u ON f.following_id = u.id INNER JOIN images i ON i.user_id = u.id WHERE f.user_id = '{$_SESSION['user_id']}' ";
+    $postsData = $mysqli->query("SELECT * FROM followers f INNER JOIN users u ON f.following_id = u.id INNER JOIN images i ON i.user_id = u.id WHERE f.user_id = '{$_SESSION['user_id']}'");
+
+    if(isset($_GET["title"])) {
+        $imgSearch = $imgSearch." AND i.title LIKE '%". $_GET["title"]. "%' ";
+    }
+
+    $imgSearch = $imgSearch." ORDER BY i.date_uploaded DESC";
+
+    
+    $postsData = $mysqli->query($imgSearch);
 
     if(isset($_POST['submit'])){
         $komentar = $_POST['comment'];

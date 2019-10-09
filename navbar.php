@@ -45,7 +45,7 @@
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
           <a class="dropdown-item" href="homepage.php">Newsfeed</a>
           <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="#">Albums</a>
+          <a class="dropdown-item" href="<?php echo 'albums.php?username=' . $_SESSION['username'] ?>">Albums</a>
           <a class="dropdown-item" href="people.php">People</a>
         </div>
       </li>
@@ -53,7 +53,7 @@
         <a class="nav-link" href="upload.php">Upload</a>
     </li>
     </ul>
-    <form method="GET" action="search.php" class="form-inline my-2 my-lg-0">
+    <form method="GET" action="homepage.php" class="form-inline my-2 my-lg-0">
       <input class="form-control mr-sm-2" name="title" type="search" placeholder="Search" aria-label="Search">
       <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
     </form>
