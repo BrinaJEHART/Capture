@@ -5,10 +5,10 @@
 The website it a clone of [Flickr](https://www.flickr.com/)
 
 ### DB MODEL
-![alt text](https://github.com/JanezSedeljsak/owl-messenger/blob/master/imgs/db.png)
+
 
 ### SITE PREVIEW
-![alt text](https://github.com/JanezSedeljsak/owl-messenger/blob/master/imgs/site.png)
+
 
 ## Getting Started
 
