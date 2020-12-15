@@ -2,7 +2,7 @@
 
 # Capture
 
-The website it a clone of [Flickr](https://www.flickr.com/)
+The website is a clone of [Flickr](https://www.flickr.com/)
 
 ### DB MODEL
 
